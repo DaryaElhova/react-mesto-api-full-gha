@@ -1,0 +1,7 @@
+.register {
+  margin: 60px auto 80px auto;
+  max-width: 358px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

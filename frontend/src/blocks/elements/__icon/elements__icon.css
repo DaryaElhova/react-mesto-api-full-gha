@@ -1,0 +1,19 @@
+.elements__icon {
+  background-image: url(../../../images/icon.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: transparent;
+  height: 19px;
+  width: 22px;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.elements__icon:hover{
+  opacity: 0.6;
+  transition: opacity 1s ease;
+}
+
+

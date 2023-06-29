@@ -1,0 +1,16 @@
+.register__button {
+  width: 100%;
+  min-height: 50px;
+  background: #FFFFFF;
+  border-radius: 2px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+  text-align: center;
+  color: #000000;
+  margin: 216px 0 0 0;
+  cursor:pointer;
+}

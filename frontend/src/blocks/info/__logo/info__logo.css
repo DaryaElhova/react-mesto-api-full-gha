@@ -1,0 +1,7 @@
+.info__logo {
+  margin: 26px auto 0 auto;
+  max-width: 120px;
+  max-height: 120px;
+  object-fit: contain;
+  background: transparent;
+}

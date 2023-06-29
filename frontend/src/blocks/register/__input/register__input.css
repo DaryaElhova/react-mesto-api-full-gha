@@ -1,0 +1,25 @@
+.register__input{
+  max-height: 27px;
+  width: 100%;
+  padding: 0;
+  margin: 30px 0 0 0;
+  border-bottom: 2px solid #CCCCCC;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #CCCCCC;
+  padding-bottom: 13px;
+}
+
+.register__input:-webkit-autofill {
+  background-color: initial;
+  background-image: none;
+  -webkit-text-fill-color: #CCCCCC;
+  transition: background-color 5000s ease-in-out 0s;
+}

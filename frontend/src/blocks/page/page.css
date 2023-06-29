@@ -1,0 +1,24 @@
+.page {
+	width: 68.75%;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+
+@media screen and (max-width:768px) {
+  .page {
+    width: 78%;
+  }
+}
+
+@media screen and (max-width:425px) {
+  .page {
+    width: 88.1%;
+  }
+}
+
+@media screen and (max-width:320px) {
+  .page {
+    width: 100%;
+  }
+}
