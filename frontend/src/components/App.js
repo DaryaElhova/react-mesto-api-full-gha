@@ -175,7 +175,6 @@ function App() {
       .then((res) => {
         //сохраняем токен
         localStorage.setItem("jwt", res.token);
-        //setToken(res.token);
         setSuccess(true);
         setTooltipOpen(true);
       })
@@ -191,7 +190,6 @@ function App() {
       .then((res) => {
         setUserEmail(email);
         localStorage.setItem("jwt", res.token);
-        //setToken(res.token);
         setIsLoggedIn(true);
         navigate("/");
       })

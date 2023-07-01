@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
@@ -24,6 +25,12 @@ app.use(express.json());
 
 // подключать до всех обработчиков роутов
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signin', validateAuth, loginUser);
 app.post('/signup', validateCreateUser, createUser);

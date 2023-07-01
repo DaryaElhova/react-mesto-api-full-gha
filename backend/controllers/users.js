@@ -7,6 +7,8 @@ const NotFound = require('../utils/errors-constructor/NotFound');
 const Unauthorized = require('../utils/errors-constructor/Unauthorized');
 const ConflictError = require('../utils/errors-constructor/ConflictError');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const {
   MONGO_DUPLICATE_KEY_ERROR,
   OK,
@@ -123,7 +125,7 @@ const loginUser = (req, res, next) => {
         throw new Unauthorized('Неправильная почта илии пароль');
       }
 
-      const token = jwt.sign({ _id: user._id }, 'secret-key');
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some_secret_key');
       return res.status(OK).send({ token });
     })
     .catch((err) => {
