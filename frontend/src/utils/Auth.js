@@ -1,4 +1,4 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = "https://mesto.elkhova.nomoreparties.sbs";
 
 //функция с общим кодом
 const makeRequest = (url, method, body, token) => {
