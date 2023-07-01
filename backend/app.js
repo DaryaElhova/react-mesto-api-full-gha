@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const cardRouter = require('./routes/cards');
 const userRouter = require('./routes/users');
 const { loginUser, createUser } = require('./controllers/users');
@@ -18,6 +19,7 @@ mongoose.connect('mongodb://127.0.0.1/mestodb')
   });
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // подключать до всех обработчиков роутов
