@@ -5,11 +5,11 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: https://github.com/DaryaElhova/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
-IP-адрес 51.250.11.101
+IP 51.250.11.101
 
 Frontend https://mesto.elkhova.nomoreparties.sbs/
 
