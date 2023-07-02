@@ -1,14 +1,13 @@
 class Api{
   constructor(basePath, token){
       this._basePath = basePath;
-      this._token = token;
   }
 
 //Метод,который позволяет не дублировать заголовки
 _getHeaders(){
   return {
     "Content-Type" : "application/json",
-    authorization: this._token
+    authorization: `Bearer ${ localStorage.getItem('token') }`
   }
 }
 
@@ -91,8 +90,7 @@ changeAvatarApi(avatarLink) {
 }
 
 const api = new Api(
-  "https://mesto.nomoreparties.co/v1/cohort-61",
-   "4ad54b8d-418c-4c83-835c-6ae9b7d3aa74"
+  "https://api.mesto.elkhova.nomoreparties.sbs",
 );
 
 export default api;
