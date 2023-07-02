@@ -11,6 +11,8 @@ const NotFound = require('./utils/errors-constructor/NotFound');
 const { errorHandler } = require('./middlwares/error-handler');
 const { requestLogger, errorLogger } = require('./middlwares/logger');
 
+const { PORT = 3000 } = process.env;
+
 mongoose.connect('mongodb://127.0.0.1/mestodb')
   .then(() => {
     console.log('Connecting...');
@@ -47,8 +49,6 @@ app.use((req, res, next) => {
 app.use(errors());
 
 app.use(errorHandler);
-
-const { PORT = 3000 } = process.env;
 
 app.listen(PORT, () => {
   console.log(`app listening on port ${PORT}`);
