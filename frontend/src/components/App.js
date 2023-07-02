@@ -53,7 +53,7 @@ function App() {
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(
-      (cardItem) => cardItem._id === currentUser._id
+      (cardItem) => cardItem === currentUser._id
     );
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
@@ -140,7 +140,7 @@ function App() {
     setTooltipOpen(false);
   }
 
-  //регистрация и авторизация
+  //регистрация и авторизация---------------
   useEffect(() => {
     handleTokenCheck();
   }, []);
@@ -151,7 +151,7 @@ function App() {
     if (jwt) {
       Auth.checkToken(jwt)
         .then((data) => {
-          setUserEmail(data.data.email);
+          setUserEmail(data.email);
           setIsLoggedIn(true);
           navigate("/");
         })
@@ -164,8 +164,9 @@ function App() {
   const registerUser = ({ email, password }) => {
     Auth.registration(email, password)
       .then((res) => {
-        //сохраняем токен
-        localStorage.setItem("jwt", res.token);
+        if (res.status === 409) {
+          throw new Error("Конфликт");
+        }
         setSuccess(true);
         setTooltipOpen(true);
       })
@@ -180,7 +181,7 @@ function App() {
     Auth.authorization(email, password)
       .then((res) => {
         setUserEmail(email);
-        localStorage.setItem("jwt", res.token);
+        localStorage.setItem("jwt", res.jwt);
         setIsLoggedIn(true);
         navigate("/");
       })
@@ -192,7 +193,6 @@ function App() {
   const logOut = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
-    //setToken('');
     setUserEmail("");
   };
 
