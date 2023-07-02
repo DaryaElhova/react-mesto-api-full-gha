@@ -158,16 +158,8 @@ function App() {
         .catch((err) => {
           console.log(`Ошибка ${err}`);
         })
-        //завершить загрузку
-        // .finally(() => {
-        //   setIsLoading(false);
-        // });
     }
   }
-
-  // if (isLoading) {
-  //   return <div>Загрузка...</div>;
-  // }
 
   const registerUser = ({ email, password }) => {
     Auth.registration(email, password)
