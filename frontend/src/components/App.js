@@ -31,7 +31,6 @@ function App() {
   const [success, setSuccess] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     api
@@ -148,27 +147,27 @@ function App() {
 
   function handleTokenCheck() {
     const jwt = localStorage.getItem("jwt");
-    setIsLoggedIn(true);
+
     if (jwt) {
       Auth.checkToken(jwt)
         .then((data) => {
           setUserEmail(data.data.email);
-          // setIsLoggedIn(true);
+          setIsLoggedIn(true);
           navigate("/");
         })
         .catch((err) => {
           console.log(`Ошибка ${err}`);
         })
         //завершить загрузку
-        .finally(() => {
-          setIsLoading(false);
-        });
+        // .finally(() => {
+        //   setIsLoading(false);
+        // });
     }
   }
 
-  if (isLoading) {
-    return <div>Загрузка...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Загрузка...</div>;
+  // }
 
   const registerUser = ({ email, password }) => {
     Auth.registration(email, password)
