@@ -31,8 +31,9 @@ const createCard = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequest('Некорректные данные'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
@@ -52,9 +53,10 @@ const deleteCard = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        throw new BadRequest('Некорректные данные');
+        next(new BadRequest('Некорректные данные'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
@@ -73,9 +75,10 @@ const likeCard = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        throw new BadRequest('Некорректные данные');
+        next(new BadRequest('Некорректные данные'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
@@ -94,9 +97,10 @@ const deleteLike = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        throw new BadRequest('Некорректные данные');
+        next(new BadRequest('Некорректные данные'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 

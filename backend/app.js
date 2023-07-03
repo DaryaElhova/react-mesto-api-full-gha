@@ -39,12 +39,12 @@ app.post('/signup', validateCreateUser, createUser);
 app.use(cardRouter);
 app.use(userRouter);
 
-// после роутов и перед обработчиками ошибок
-app.use(errorLogger);
-
 app.use((req, res, next) => {
   next(new NotFound('Not Found'));
 });
+
+// после роутов и перед обработчиками ошибок
+app.use(errorLogger);
 
 app.use(errors());
 

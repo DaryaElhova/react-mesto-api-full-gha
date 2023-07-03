@@ -128,11 +128,14 @@ const loginUser = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some_secret_key');
       return res.status(OK).send({ token });
     })
+    // ошибку в catch передавать через next
+    // если через throw, то будет необрабатю исключение и она не попадет в обработчик.
     .catch((err) => {
       if (err.message === 'Unauthorized') {
-        throw new Unauthorized('Ошибка авторизации');
+        next(new Unauthorized('Ошибка авторизации'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
@@ -149,10 +152,10 @@ const updateUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new BadRequest('Введенные данные некорректны');
+        next(new BadRequest('Введенные данные некорректны'));
+      } else {
+        next(err);
       }
-
-      next(err);
     });
 };
 
@@ -171,9 +174,10 @@ const updateAvatar = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new BadRequest('Введенные данные некорректны');
+        next(new BadRequest('Введенные данные некорректны'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
