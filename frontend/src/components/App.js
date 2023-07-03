@@ -33,7 +33,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect( () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('jwt');
     if (token) { Promise.all([ api.getUserInfoApi(), api.getCardsApi() ])
       .then(( [ user, cards] ) => {
         setCurrentUser(user);
@@ -42,24 +42,6 @@ function App() {
       .catch( (err) => { console.log(`Возникла ошибка, ${err}`) })
     }
   }, [isLoggedIn])
-
-  // useEffect(() => {
-  //   api
-  //     .getCardsApi()
-  //     .then((cards) => {
-  //       setCards(cards);
-  //     })
-  //     .catch((err) => console.log(`Возникла ошибка ${err}`));
-  // }, []);
-
-  // useEffect(() => {
-  //   api
-  //     .getUserInfoApi()
-  //     .then((data) => {
-  //       setCurrentUser(data);
-  //     })
-  //     .catch((err) => console.log(`Возникла ошибка ${err}`));
-  // }, []);
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
