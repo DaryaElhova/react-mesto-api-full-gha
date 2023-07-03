@@ -32,23 +32,34 @@ function App() {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    api
-      .getCardsApi()
-      .then((cards) => {
+  useEffect( () => {
+    const token = localStorage.getItem('token');
+    if (token) { Promise.all([ api.getUserInfoApi(), api.getCardsApi() ])
+      .then(( [ user, cards] ) => {
+        setCurrentUser(user);
         setCards(cards);
       })
-      .catch((err) => console.log(`Возникла ошибка ${err}`));
-  }, []);
+      .catch( (err) => { console.log(`Возникла ошибка, ${err}`) })
+    }
+  }, [isLoggedIn])
 
-  useEffect(() => {
-    api
-      .getUserInfoApi()
-      .then((data) => {
-        setCurrentUser(data);
-      })
-      .catch((err) => console.log(`Возникла ошибка ${err}`));
-  }, []);
+  // useEffect(() => {
+  //   api
+  //     .getCardsApi()
+  //     .then((cards) => {
+  //       setCards(cards);
+  //     })
+  //     .catch((err) => console.log(`Возникла ошибка ${err}`));
+  // }, []);
+
+  // useEffect(() => {
+  //   api
+  //     .getUserInfoApi()
+  //     .then((data) => {
+  //       setCurrentUser(data);
+  //     })
+  //     .catch((err) => console.log(`Возникла ошибка ${err}`));
+  // }, []);
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
@@ -184,6 +195,8 @@ function App() {
         localStorage.setItem("jwt", res.token);
         setIsLoggedIn(true);
         navigate("/");
+        setCurrentUser(res);
+        setCards([]);
       })
       .catch((err) => {
         console.log(`Ошибка ${err}`);
