@@ -189,6 +189,8 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setUserEmail("");
+    setCurrentUser({});
+    setCards([]);
   };
 
   return (
